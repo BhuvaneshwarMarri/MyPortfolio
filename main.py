@@ -96,7 +96,7 @@ def send_mail(name, email, phone, subject, message):
     msg.attach(MIMEText(body, 'plain'))
     
     with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
-        server.login(sender_email, sender_password)
+        server.login(os.environ.get("SENDER"),os.environ.get("PW"))
         server.sendmail(sender_email, sender_email, msg.as_string())
     
 # HOME PAGE
