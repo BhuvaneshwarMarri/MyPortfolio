@@ -13,6 +13,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column 
 from sqlalchemy import Integer, String
 import os
+import mailtrap as mt
 
 #---CONSTANTS SECTION---
 SENDER=os.environ.get("SENDER")
@@ -57,7 +58,7 @@ db=SQLAlchemy(model_class=Base)
         
 app = Flask(__name__)
 app.secret_key = os.environ.get("sec")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URI")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URI","sqlite:///portfolio-database.db")
 
 db.init_app(app)
 
@@ -87,18 +88,28 @@ def create_row(fullname,email,phone,subject,message):
         db.session.commit()
     
 # SEND MAIL
-def send_mail(name, email, phone, subject, message):
-    msg = MIMEMultipart()
-    msg['From'] = sender_email
-    msg['To'] = sender_email
-    msg['Subject'] = subject
-    body = f"Subject: {subject}\n\n Name: {name}\n Email: {email}\n Phone: {phone}\n Message: {message}"
-    msg.attach(MIMEText(body, 'plain'))
+# def send_mail(name, email, phone, subject, message):
+#     msg = MIMEMultipart()
+#     msg['From'] = sender_email
+#     msg['To'] = sender_email
+#     msg['Subject'] = subject
+#     body = f"Subject: {subject}\n\n Name: {name}\n Email: {email}\n Phone: {phone}\n Message: {message}"
+#     msg.attach(MIMEText(body, 'plain'))
     
-    with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
-        server.login(os.environ.get("SENDER"),os.environ.get("PW"))
-        server.sendmail(sender_email, sender_email, msg.as_string())
+#     with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
+#         server.login(os.environ.get("SENDER"),os.environ.get("PW"))
+#         server.sendmail(sender_email, sender_email, msg.as_string())
+
+def send_mail(name,email,phone,subject,message):
+    mail = mt.Mail(
+    sender=mt.Address(email="mailtrap@demomailtrap.com", name="From Portfolio"),
+    to=[mt.Address(email="bhuvaneshwarmarri@gmail.com")],
+    subject=f"{subject}",
+    text=f"Name: {name}\n Email: {email}\n Phone: {phone}\n Message: {message}",)
+    client = mt.MailtrapClient(token=os.environ.get("apimail"))
+    client.send(mail)
     
+  
 # HOME PAGE
 @app.route("/")
 def home():
@@ -134,12 +145,12 @@ def acknowledge():
                    data_c.subject.data,
                    data_c.message.data)
         data_c.fullname.data,data_c.email.data,data_c.phone.data,data_c.subject.data,data_c.message.data="","","","",""
-        return render_template(url_for("home"),
+        return render_template("index.html",
                                msg_sent=True,
                                form=data_c,
                                year=curr_year)
     data_c.fullname.data,data_c.email.data,data_c.phone.data,data_c.subject.data,data_c.message.data="","","","",""
-    return render_template(url_for("home"),
+    return render_template("index.html",
                            msg_sent=False,
                            form=data_c,
                            year=curr_year)
