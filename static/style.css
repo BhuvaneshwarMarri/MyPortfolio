@@ -224,7 +224,7 @@ span{
 }
 
 .text-animation span::before{
-    content: "Python Developer";
+    content: "PyDev";
     color: var(--main-color);
     animation: words 20s infinite;
 }
@@ -253,11 +253,11 @@ span{
    }
    21%,
    40%{
-    content: "Competative Coder";
+    content: "Coder";
    }
    41%,
    60%{
-    content: "Python Developer";
+    content: "PyDev";
    }
    61%,
    80%{
@@ -265,7 +265,7 @@ span{
    }
    81%,
    100%{
-    content: "Competative Coder";
+    content: "Coder";
    }
 }
 
@@ -724,16 +724,18 @@ span{
     .footer{
         padding: 2rem 3%;
     }
+    
     .home-img img{
         position:relative;
         top: 3rem;
-        width: 30vw;
-        height: 30vw;
+        width: 60vw;
+        height: 60vw;
         border-radius: 50%;
         box-shadow: 0 0 25px var(--main-color);
         cursor: pointer;
         transition: 0.4s ease-in-out;
     }
+
 }
 @media(max-width:896px){
     #menu-icon{
@@ -765,14 +767,18 @@ span{
         flex-direction: column-reverse;
         margin: 5rem 4rem;
     }
+    .home-content{
+        padding: 100px 30px 30px 30px;
+    }
     .home-content h3{
-        font-size: 8rem;
+        font-size: 5rem;
     }
     .home-content h1{
-        font-size: 8rem;
+        font-size: 5rem;
         margin-top: 3rem;
     }
     .home-content p{
+        
         max-width: 600px;
         margin: 0 auto;
     }
