@@ -102,11 +102,11 @@ def create_row(fullname,email,phone,subject,message):
 
 def send_mail(name,email,phone,subject,message):
     mail = mt.Mail(
-    sender=mt.Address(email=os.environ.get("frommail"), name="From Portfolio"),
-    to=[mt.Address(email=os.environ.get("tomail"))],
+    sender=mt.Address(email="mailtrap@demomailtrap.com", name="From Portfolio"),
+    to=[mt.Address(email="bhuvaneshwarmarri@gmail.com")],
     subject=f"{subject}",
     text=f"Name: {name}\n Email: {email}\n Phone: {phone}\n Message: {message}",)
-    client = mt.MailtrapClient(token=os.environ.get("apimail"))
+    client = mt.MailtrapClient(token="53c70089d6d70386d709e051478d44f2")
     client.send(mail)
     
   
@@ -120,12 +120,6 @@ def home():
                            year=curr_year,
                            form=ContactForm())
 
-# BLOGS PAGE
-@app.route("/blogs")
-def blog():
-    curr_year=datetime.now().year
-    blog_posts = requests.get( os.environ.get("npoint")).json()
-    return render_template("blogs.html",posts=blog_posts,year=curr_year)
 
 # SEND MAIL WHEN SUBMIT
 @app.route("/",methods=["GET","POST"])
@@ -156,20 +150,6 @@ def acknowledge():
                            year=curr_year)
         
 
-#INDIVIDUAL BLOG RENDERING
-@app.route("/blogs/<int:id>")
-def show_blog(id):
-    blog_posts = requests.get(os.environ.get("npoint")).json()
-    curr_year=datetime.now().year
-    title,blog_text="",""
-    for i in blog_posts:
-        if i["id"]==id:
-            title,blog_text=i["title"],i["blog"]
-            break
-    return render_template("blog_post.html",
-                           title=title,
-                           blog_text=blog_text,
-                           year=curr_year)
 
 
 if __name__ == "__main__":

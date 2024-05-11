@@ -463,59 +463,10 @@ span{
     display:inline;
 }
 
-.services{
-    background-color: var(--second-bg-color);
-}
-.services-box{
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.services .heading{
-    margin-bottom: 5rem;
-}
-.services-box img{
-    width: 15rem;
-    height: 15rem;
-    border-radius: 50%;
-    border: 3px solid var(--main-color);
-    box-shadow: 0 0 25px var(--main-color);
-}
 .wrapper{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 3rem;
-}
-.services-item{
-    min-height: 450px;
-    max-width: 450px;
-    background: rgba(0,0,0,0.7);
-    border : 3px solid rgba(238,238,238,0.2);
-    border-radius: 2rem;
-    margin: 0 2rem;
-    padding: 30px 60px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 1.5rem;
-    color: white;
-    transition: 0.4s ease-in-out;
-}
-.services-item:hover{
-    border:3px solid var(--main-color);
-    transform: translateY(-10px)scale(1.03);
-    box-shadow: 0 0 50px var(--main-color);
-}
-.services-item h2{
-    font-size: 2.8rem;
-}
-.services-item p{
-    font-size: 1.3rem;
 }
 .contact{
     background-color: var(--bg-color);
@@ -614,53 +565,6 @@ span{
     font-size: 16px;
     color: var(--main-color);
 }
-.blog-item {
-    background-color: var(--bg-color);
-    border: 3px solid var(--main-color);
-    padding: 30px 50px;
-    border-radius: 4rem;
-    margin-bottom: 35px;
-    box-shadow: 0 0 1 var(--main-color);
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-.blog-item:hover{
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--main-color);
-    background: white;
-    color: black;
-    border:5px solid var(--main-color);
-    transform: scale(1.03);
-    font-size: 25px;
-}
-.blog-item a h3{
-    font-size: 30px;
-    color: white;
-    margin: 0 0 10px;
-    font-weight: 500;
-}
-.blog-item p{
-    color: white;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 22px;
-}
-.blog-text-area{
-    background-color: var(--bg-color);
-    border: 3px solid var(--main-color);
-    padding: 30px 50px;
-    border-radius: 4rem;
-    margin-bottom: 35px;
-    box-shadow: 0 0 1 var(--main-color);
-    cursor: pointer;
-    font-size: 20px;
-    word-spacing: 2px; 
-    line-height: 1.5;
-    text-align: justify;
-    width: 100%;
-    height: 600px;
-    overflow-y: auto;
-}
 
 ::-webkit-scrollbar {
     width: 10px; 
@@ -714,9 +618,6 @@ span{
     }
     .skills{
         padding-bottom: 7rem;
-    }
-    .services .wrapper{
-        grid-template-columns: repeat(1,1fr);
     }
     .contact form{
         flex-direction: column;
