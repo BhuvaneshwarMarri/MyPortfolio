@@ -1,5 +1,5 @@
 # ---IMPORTS SECTION---
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,url_for
 import requests
 from datetime import datetime
 import smtplib
@@ -134,12 +134,12 @@ def acknowledge():
                    data_c.subject.data,
                    data_c.message.data)
         data_c.fullname.data,data_c.email.data,data_c.phone.data,data_c.subject.data,data_c.message.data="","","","",""
-        return render_template("index.html",
+        return render_template(url_for("home"),
                                msg_sent=True,
                                form=data_c,
                                year=curr_year)
     data_c.fullname.data,data_c.email.data,data_c.phone.data,data_c.subject.data,data_c.message.data="","","","",""
-    return render_template("index.html",
+    return render_template(url_for("home"),
                            msg_sent=False,
                            form=data_c,
                            year=curr_year)
