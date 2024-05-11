@@ -102,8 +102,8 @@ def create_row(fullname,email,phone,subject,message):
 
 def send_mail(name,email,phone,subject,message):
     mail = mt.Mail(
-    sender=mt.Address(email="mailtrap@demomailtrap.com", name="From Portfolio"),
-    to=[mt.Address(email="bhuvaneshwarmarri@gmail.com")],
+    sender=mt.Address(email=os.environ.get("frommail"), name="From Portfolio"),
+    to=[mt.Address(email=os.environ.get("tomail"))],
     subject=f"{subject}",
     text=f"Name: {name}\n Email: {email}\n Phone: {phone}\n Message: {message}",)
     client = mt.MailtrapClient(token=os.environ.get("apimail"))
