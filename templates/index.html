@@ -26,13 +26,17 @@
         <!--services-->
         <!--{%include "services.html"%}-->
 
+        <!--Projects-->
+        <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+        {%include "projects.html"%}
+    </div>
         <!--Contact-->
         {%include "contact.html"%}
 
          <!--Footer-->
         {% include "footer.html" %}
 
-        <script src="{{ url_for('static',filename='script.js') }}"></script>
-        {%include "blognavigate.html"%}
+        <!-- <script src="{{ url_for('static',filename='script.js') }}"></script>
+        {%include "blognavigate.html"%} -->
     </body>
 </html>

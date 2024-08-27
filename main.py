@@ -14,10 +14,19 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String
 import os
 import mailtrap as mt
+from dotenv import load_dotenv
+
+load_dotenv()
 
 #---CONSTANTS SECTION---
-SENDER=os.environ.get("SENDER")
-PW=os.environ.get("PW")
+SENDER=os.getenv("SENDER")
+PW=os.getenv("PW")
+apimail=os.getenv("apimail")
+DB_URI=os.getenv("DB_URI","sqlite:///portfolio-database.db")
+frommail=os.getenv("frommail")
+npoint=os.getenv("npoint")
+sec=os.getenv("sec")
+tomail=os.getenv("tomail")
 
 smtp_server = 'smtp.gmail.com'
 smtp_port = 465
@@ -57,8 +66,8 @@ class Base(DeclarativeBase):
 db=SQLAlchemy(model_class=Base)
         
 app = Flask(__name__)
-app.secret_key = os.environ.get("sec")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URI","sqlite:///portfolio-database.db")
+app.secret_key = sec
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///portfolio-database.db"
 
 db.init_app(app)
 
@@ -102,11 +111,11 @@ def create_row(fullname,email,phone,subject,message):
 
 def send_mail(name,email,phone,subject,message):
     mail = mt.Mail(
-    sender=mt.Address(email=os.environ.get("frommail"), name="From Portfolio"),
-    to=[mt.Address(email=os.environ.get("tomail"))],
+    sender=mt.Address(email=frommail, name="From Portfolio"),
+    to=[mt.Address(email=tomail)],
     subject=f"{subject}",
     text=f"Name: {name}\n Email: {email}\n Phone: {phone}\n Message: {message}",)
-    client = mt.MailtrapClient(token=os.environ.get("apimail"))
+    client = mt.MailtrapClient(token=apimail)
     client.send(mail)
     
   
@@ -124,7 +133,7 @@ def home():
 @app.route("/blogs")
 def blog():
     curr_year=datetime.now().year
-    blog_posts = requests.get( os.environ.get("npoint")).json()
+    blog_posts = requests.get(npoint).json()
     return render_template("blogs.html",posts=blog_posts,year=curr_year)
 
 # SEND MAIL WHEN SUBMIT
@@ -159,7 +168,7 @@ def acknowledge():
 #INDIVIDUAL BLOG RENDERING
 @app.route("/blogs/<int:id>")
 def show_blog(id):
-    blog_posts = requests.get(os.environ.get("npoint")).json()
+    blog_posts = requests.get("https://api.npoint.io/875d14966cd273e8db13").json()
     curr_year=datetime.now().year
     title,blog_text="",""
     for i in blog_posts:

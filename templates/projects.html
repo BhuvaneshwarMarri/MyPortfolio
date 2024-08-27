@@ -1,0 +1,54 @@
+<section class="projects" id="projects">
+    <h2 class="heading">Projects</h2>
+    <br><br><br><br><br><br><br><br>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/200x200?text=Project+1" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>Description of Project 1.</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/200x200?text=Project+2" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>Description of Project 2.</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/200x200?text=Project+3" alt="Project 3">
+                <h3>Project 3</h3>
+                <p>Description of Project 3.</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/200x200?text=Project+4" alt="Project 4">
+                <h3>Project 4</h3>
+                <p>Description of Project 4.</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/200x200?text=Project+5" alt="Project 5">
+                <h3>Project 5</h3>
+                <p>Description of Project 5.</p>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button id="prevBtn">&#10094;</button>
+            <button id="nextBtn">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        let angle = 0;
+        const angleIncrement = 360 / items.length;
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            angle -= angleIncrement;
+            carousel.style.transform = `rotateY(${angle}deg)`;
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            angle += angleIncrement;
+            carousel.style.transform = `rotateY(${angle}deg)`;
+        });
+    </script>
+</section>
