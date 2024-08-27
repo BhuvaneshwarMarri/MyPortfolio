@@ -7,3 +7,4 @@ sqlalchemy==2.0.30
 gunicorn==22.0.0
 psycopg2-binary==2.9.9
 mailtrap==2.0.1
+python-dotenv==1.0.1
