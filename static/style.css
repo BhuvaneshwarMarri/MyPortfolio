@@ -841,6 +841,8 @@ span{
 }
 
 .carousel-item p {
+    padding-right: 5px;
+    padding-left: 5px;
     text-align: center;
     color: var(--text-color);
 }
