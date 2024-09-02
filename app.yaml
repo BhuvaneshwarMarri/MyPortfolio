@@ -1,0 +1,2 @@
+runtime: pythom312
+entrypoint: gunicorn -b :$PORT main:app

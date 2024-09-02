@@ -15,6 +15,7 @@ from sqlalchemy import Integer, String
 import os
 import mailtrap as mt
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -70,6 +71,7 @@ app.secret_key = sec
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///portfolio-database.db"
 
 db.init_app(app)
+CORS(app)
 
 class ContactDetails(db.Model):
     Id : Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -182,4 +184,4 @@ def show_blog(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")
